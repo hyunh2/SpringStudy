@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyun.cafe.dao.SandwitchDao">
+
+	<select id="AllSandwitch" resultType="com.hyun.cafe.dto.SandwitchDto">	
+		SELECT * FROM CAFE_SANDWITCH 
+	</select>
+	
+ <!-- 이미지 없이 메뉴 추가 -->
+ 	<insert id="addMenu_no_img">
+ 		INSERT INTO CAFE_SANDWITCH
+ 		(SNAME, SPRICE,SCOMMENT,ISNEW)
+ 		VALUES
+ 		(#{param1},#{param2},#{param3},#{param4})
+ 	</insert>
+ 	
+ 	<!-- 이미지 있는 메뉴 추가 -->
+ 	<insert id="addMenu_img">
+ 	INSERT INTO CAFE_SANDWITCH
+ 		(SNAME, SPRICE,SCOMMENT,SIMG,ISNEW)
+ 		VALUES
+ 		(#{param1},#{param2},#{param3},#{param4},#{param5})
+ 	</insert>
+ 	
+ <!-- 해당 샌드위치 가져오기 -->
+ 	<select id="bringSandwitch" resultType="com.hyun.cafe.dto.SandwitchDto">
+ 		SELECT * FROM CAFE_SANDWITCH
+ 		WHERE SNAME LIKE #{param1}
+ 	</select>
+ 	
+ 	<!-- 이미지 없는 메뉴수정 -->
+ 	<update id="updateMenu_no_img">
+ 		UPDATE 
+ 		CAFE_SANDWITCH 
+ 		SET 
+ 		SNAME=#{param2}, SPRICE=#{param3}, SCOMMENT=#{param4},ISNEW =#{param5}
+ 		WHERE 
+ 		SIDX = #{param1}
+ 	</update>
+ 	
+ 	<!-- 이미지 있는 메뉴수정 -->
+ 	<update id="updateMenu_img">
+ 		UPDATE 
+ 		CAFE_SANDWITCH 
+ 		SET 
+ 		SNAME=#{param2}, SPRICE=#{param3}, SCOMMENT=#{param4},SIMG =#{param5},ISNEW =#{param6}
+ 		WHERE 
+ 		SIDX = #{param1}
+ 	</update>
+ 	
+ 	<!-- 메뉴 삭제 -->
+ 	<delete id="deleteMenu">
+ 		DELETE FROM CAFE_SANDWITCH
+ 		WHERE SNAME  = #{param1}
+ 		
+ 	</delete>
+</mapper>
+<!-- 메인 홈페이지 공지사항 5개만 나오게 하는 코드 -->

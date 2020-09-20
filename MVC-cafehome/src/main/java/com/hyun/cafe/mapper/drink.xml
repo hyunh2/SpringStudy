@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyun.cafe.dao.DrinkDao">
+
+	<select id="AllDrink" resultType="com.hyun.cafe.dto.DrinkDto">	
+		SELECT * FROM CAFE_DRINK  
+		ORDER BY DIDX DESC
+	</select>
+	
+<!-- 메뉴에서 음료 종류 선택해서 해당 메뉴 가져오기 -->
+	<select id="KindDrink" resultType="com.hyun.cafe.dto.DrinkDto">	
+		SELECT * FROM CAFE_DRINK 
+		WHERE DCATEGORY LIKE #{param1}
+		ORDER BY DIDX DESC
+	</select>
+ 
+ 	<!-- 이미지 없이 메뉴 추가 -->
+ 	<insert id="addMenu_no_img">
+ 		INSERT INTO CAFE_DRINK
+ 		(DNAME, DPRICE,DCATEGORY,DCOMMENT,DHOTNICE,ISNEW)
+ 		VALUES
+ 		(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
+ 	</insert>
+ 	
+ 	<!-- 이미지 있는 메뉴 추가 -->
+ 	<insert id="addMenu_img">
+ 	INSERT INTO CAFE_DRINK
+ 		(DNAME, DPRICE,DCATEGORY,DCOMMENT,DIMG,DHOTNICE,ISNEW)
+ 		VALUES
+ 		(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7})
+ 	</insert>
+ 	
+ 	<!-- 음료 가져오기 -->
+ 	<select id="bringDrink" resultType="com.hyun.cafe.dto.DrinkDto">
+ 		SELECT * FROM CAFE_DRINK
+ 		WHERE DNAME LIKE #{param1}
+ 	</select>
+ 	
+ 	<!-- 이미지없이 수정 -->
+ 	<update id="updateMenu_no_img">
+ 	UPDATE
+ 	CAFE_DRINK
+ 	SET
+ 	DNAME=#{param2}, DPRICE=#{param3},DCATEGORY =#{param4}, DCOMMENT=#{param5}, DHOTNICE=#{param6},ISNEW=#{param7}
+ 	WHERE
+ 	DIDX=#{param1}
+ 	</update>
+ 	
+ 	<!-- 이미지 있는 수정 -->
+ 	<update id="updateMenu_img">
+ 	UPDATE
+ 	CAFE_DRINK
+ 	SET
+ 	DNAME=#{param2}, DPRICE=#{param3},DCATEGORY =#{param4}, DCOMMENT=#{param5}, DIMG=#{param6},DHOTNICE=#{param7},ISNEW=#{param8}
+ 	WHERE
+ 	DIDX=#{param1}
+ 	</update>
+ 	
+ 	<!-- 메뉴 삭제 -->
+ 	<delete id="deleteMenu">
+ 		DELETE FROM CAFE_DRINK
+ 		WHERE DNAME  = #{param1}
+ 		
+ 	</delete>
+</mapper>

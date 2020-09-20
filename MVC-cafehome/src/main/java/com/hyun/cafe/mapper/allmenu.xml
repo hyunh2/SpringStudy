@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyun.cafe.dao.AllMenuDao">
+
+
+	<select id="AllMenuList" resultType="com.hyun.cafe.dto.AllMenuDto">	
+		SELECT * FROM ALLMENU
+		ORDER BY AMIDX DESC
+	</select>
+	
+	<select id="AllMenuList_paging" resultType="com.hyun.cafe.dto.AllMenuDto">	
+		SELECT * FROM ALLMENU
+		ORDER BY AMIDX DESC
+		LIMIT #{param1},#{param2}
+	</select>
+	
+	<!-- 메뉴 추가 -->
+	<insert id="addMenu">
+		INSERT INTO ALLMENU
+		(AMNAME, AMCATEGORY)
+		VALUES
+		(#{param1},#{param2})
+	</insert>
+	
+	
+	<!-- 모든 메뉴 -->
+	<select id="totalRecord" resultType="int">
+		SELECT COUNT(*) FROM ALLMENU
+	</select>
+	
+	<!-- 카테고리 검색 -->
+	<select id="searchCategory" resultType="com.hyun.cafe.dto.AllMenuDto">
+		SELECT * FROM ALLMENU
+		WHERE AMCATEGORY LIKE #{param1}
+		LIMIT #{param2},#{param3}
+	</select>
+	
+	<!-- 이름 검색 -->
+	<select id="searchName" resultType="com.hyun.cafe.dto.AllMenuDto">
+		SELECT * FROM ALLMENU
+		WHERE AMNAME LIKE #{param1}
+		LIMIT #{param2},#{param3}
+	</select>
+	
+	<!-- 카테고리 검색 시 총 갯수 -->
+	<select id="totalRecord_category" resultType="int">
+		SELECT COUNT(*) FROM ALLMENU
+		WHERE AMCATEGORY LIKE #{param1}
+	</select>
+	
+	<!-- 이름 검색 시 총 갯수 -->
+	<select id="totalRecord_name" resultType="int">
+		SELECT COUNT(*) FROM ALLMENU
+		WHERE AMNAME LIKE #{param1}
+	</select>
+	
+	<!--  메뉴수정 -->
+ 	<update id="updateMenu">
+ 		UPDATE 
+ 		ALLMENU
+ 		SET 
+ 		AMNAME=#{param2}, AMCATEGORY=#{param3}
+ 		WHERE 
+ 		AMIDX = #{param1}
+ 	</update>
+ 	
+ 	<!-- 메뉴 삭제 -->
+ 	<delete id="deleteMenu">
+ 		DELETE FROM ALLMENU
+ 		WHERE AMNAME  = #{param1}
+ 		
+ 	</delete>
+</mapper>

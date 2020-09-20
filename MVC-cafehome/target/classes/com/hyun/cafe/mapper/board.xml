@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyun.cafe.dao.BoardDao">
+
+<!-- 메인 홈페이지 공지사항 5개만 나오게 하는 코드 -->
+	<select id="list_main" resultType="com.hyun.cafe.dto.BoardDto">	
+		SELECT * FROM CAFE_BOARD 
+		WHERE BDCATEGORY LIKE '공지사항'
+		ORDER BY BDIDX DESC 
+		LIMIT 5
+	</select>
+	
+	<select id="AllBoard" resultType="com.hyun.cafe.dto.BoardDto">
+		SELECT * FROM CAFE_BOARD
+		ORDER BY BDIDX DESC
+		LIMIT #{param1},#{param2}
+	</select>
+ 
+ 	<select id="totalRecord" resultType="int">
+ 		SELECT COUNT(*) FROM CAFE_BOARD
+ 	</select>
+ 	
+ 	<select id="adminAllBoard" resultType="com.hyun.cafe.dto.BoardDto">
+ 		SELECT * FROM CAFE_BOARD
+ 		ORDER BY BDIDX DESC
+ 	</select>
+ 	
+ 	<!-- 이미지 없는 게시글 작성  -->
+ 	<insert id="writeBoard_without_img">
+ 	INSERT INTO CAFE_BOARD
+ 	(BDTITLE, BDCOMMENT, BDCATEGORY,BDDATE)
+ 	VALUES
+ 	(#{param1},#{param2},#{param3},NOW())
+ 	</insert>
+ 	
+ 	<!-- 이미지 있는 게시글 작성 -->
+ 	<insert id="writeBoard_img">
+ 	INSERT INTO CAFE_BOARD
+ 	(BDTITLE, BDCOMMENT, BDCATEGORY,BDIMG,BDDATE)
+ 	VALUES
+ 	(#{param1},#{param2},#{param3},#{param4},NOW())
+ 	</insert>
+ 	
+ 		<!-- 카테고리 검색 -->
+	<select id="searchCategory" resultType="com.hyun.cafe.dto.BoardDto">
+		SELECT * FROM CAFE_BOARD
+		WHERE BDCATEGORY LIKE #{param1}
+		LIMIT #{param2},#{param3}
+	</select>
+	
+	<!-- 제목 검색 -->
+	<select id="searchTitle" resultType="com.hyun.cafe.dto.BoardDto">
+		SELECT * FROM CAFE_BOARD
+		WHERE BDTITLE LIKE #{param1}
+		LIMIT #{param2},#{param3}
+	</select>
+	
+	<!-- 카테고리 검색 시 총 갯수 -->
+	<select id="totalRecord_category" resultType="int">
+		SELECT COUNT(*) FROM CAFE_BOARD
+		WHERE BDCATEGORY LIKE #{param1}
+	</select>
+	
+	<!-- 제목 검색 시 총 갯수 -->
+	<select id="totalRecord_title" resultType="int">
+		SELECT COUNT(*) FROM CAFE_BOARD
+		WHERE BDTITLE LIKE #{param1}
+	</select>
+	
+	<!-- 수정할 게시글 가져오기-->
+	<select id="bringBoard" resultType="com.hyun.cafe.dto.BoardDto">
+	SELECT * FROM CAFE_BOARD
+	WHERE BDIDX LIKE #{param1}
+	</select>
+	
+	<!-- 게시글 수정  - 이미지 있음 -->
+	<update id="updateBoard_img">
+	UPDATE CAFE_BOARD 
+	SET
+	BDTITLE =#{param2}, BDCOMMENT = #{param3}, BDIMG=#{param4},BDCATEGORY=#{param5}
+	WHERE
+	BDIDX = #{param1}
+	</update>
+	
+	<!-- 게시글 수정  - 이미지 없음 -->
+	<update id="updateBoard_no_img">
+	UPDATE CAFE_BOARD 
+	SET
+	BDTITLE =#{param2}, BDCOMMENT = #{param3}, BDCATEGORY=#{param4}
+	WHERE
+	BDIDX = #{param1}
+	</update>
+	
+	<!-- 게시글 삭제  -->
+	<delete id="deleteBoard">
+		DELETE FROM CAFE_BOARD
+		WHERE
+		BDIDX = #{param1}
+	</delete>
+</mapper>

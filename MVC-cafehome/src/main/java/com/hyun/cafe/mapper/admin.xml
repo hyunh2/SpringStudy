@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyun.cafe.dao.AdminDao">
+
+
+	<select id="adminlogin" resultType="com.hyun.cafe.dto.AdminDto">	
+		SELECT * FROM CAFE_ADMIN 
+		WHERE AID=#{param1} AND APW=#{param2}
+	</select>
+	
+	
+</mapper>
