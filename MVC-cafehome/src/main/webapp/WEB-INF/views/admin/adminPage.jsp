@@ -58,9 +58,11 @@
                 <c:choose>
                 <c:when test="${boardRes ne 0 }">
                 	<c:forEach var="b" items="${bDto }">
+                	<tr>
 	                    <td>${b.bdCategory}</td>
 	                    <td>${b.bdTitle}</td>
 	                    <td>${b.bdDate}</td>
+	                </tr>
                 	</c:forEach>
                 </c:when>
                 <c:otherwise>

@@ -66,7 +66,7 @@
 						<tr>
 							<td>${bd.bdIdx }</td>
 							<td>${bd.bdCategory }</td>
-							<td><a href="viewBoard?bdIdx=${bd.bdIdx}">${bd.bdTitle }</a></td>
+							<td><a href="viewBoard?bdIdx=${bd.bdIdx}&currentPage=${currentPage}">${bd.bdTitle }</a></td>
 							<td>${bd.bdDate }</td>
 						</tr>
 					</c:forEach>

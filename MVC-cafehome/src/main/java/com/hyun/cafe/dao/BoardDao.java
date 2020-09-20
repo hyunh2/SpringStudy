@@ -48,4 +48,13 @@ public interface BoardDao {
 	//게시글 삭제
 	public int deleteBoard(int bdIdx);
 	
+	//현재 게시글 보기
+	public BoardDto viewBoard(int bdIdx);
+	
+	//이전 글 게시글 제목
+	public BoardDto view_forwardBoard(int bdIdx);
+	
+	//다음글 게시글 제목
+	public BoardDto view_nextBoard(int bdIdx);
+	
 }

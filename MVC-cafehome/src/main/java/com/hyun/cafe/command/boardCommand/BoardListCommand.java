@@ -47,7 +47,7 @@ public class BoardListCommand implements Command {
 		model.addAttribute("paging", paging);
 		model.addAttribute("bdDto", bdDao.AllBoard(begin-1, recordPerPage));
 		model.addAttribute("res", bdDao.AllBoard(begin-1, recordPerPage).size());
-
+		model.addAttribute("currentPage", currentPage);
 	}
 
 }

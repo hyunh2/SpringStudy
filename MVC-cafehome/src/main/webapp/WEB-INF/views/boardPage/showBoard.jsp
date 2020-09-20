@@ -80,7 +80,7 @@
                <td>내용</td>
                <td><p>${bdDto.bdImg}
                </p>
-               <pre>${bdDto.bdCommnet}</pre></td>
+               <pre>${bdDto.bdComment}</pre></td>
            </tr>
            <tr>
                <td colspan="2" class="btns">
@@ -91,26 +91,28 @@
        </table>
         <table border="1" class="list">
         <c:choose>
-        <c:when test="${bdDto.bdIdx } == 1">
+        <c:when test="${res eq  1 }">
+        </c:when>
+        <c:when test="${forwardboard eq null }">
             <tr>
                 <td>▲다음글</td>
-                <td><a href="readBoard?bdIdx=${bdDto.bdIdx+1}">${nextboard.bdTitle}</a></td>
+                <td><a href="viewBoard?bdIdx=${nextboard.bdIdx}">${nextboard.bdTitle}</a></td>
             </tr>
         </c:when>
-        <c:when test="${bdDto.bdIdx } == ${res }">
+        <c:when test="${nextboard eq null }">
             <tr>
                 <td>▼이전글</td>
-                <td><a href="readBoard?bdIdx=${bdDto.bdIdx-1}">${forwardboard.bdTitle}</a></td>
+                <td><a href="viewBoard?bdIdx=${forwardboard.bdIdx}">${forwardboard.bdTitle}</a></td>
             </tr>
         </c:when>
         <c:otherwise>
             <tr>
                 <td>▲다음글</td>
-                <td><a href="readBoard?bdIdx=${bdDto.bdIdx+1}">${nextboard.bdTitle}</a></td>
+                <td><a href="viewBoard?bdIdx=${nextboard.bdIdx}">${nextboard.bdTitle}</a></td>
             </tr>
             <tr>
                 <td>▼이전글</td>
-                <td><a href="readBoard?bdIdx=${bdDto.bdIdx-1}">${forwardboard.bdTitle}</a></td>
+                <td><a href="viewBoard?bdIdx=${forwardboard.bdIdx}">${forwardboard.bdTitle}</a></td>
             </tr>
         </c:otherwise>
         </c:choose>

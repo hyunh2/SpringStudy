@@ -14,7 +14,7 @@
 				<c:if test="${res ne 0 }">
 					<c:forEach var="bd" items="${bdDto }">
 						<tr>
-							<td><a href="readBoard?bdIdx=${bd.bdIdx}">${bd.bdTitle}</a></td>
+							<td><a href="viewBoard?bdIdx=${bd.bdIdx}">${bd.bdTitle}</a></td>
 						</tr>
 					</c:forEach>
 				</c:if>

@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<!-- 이미지 있는 게시글 작성 -->
  	<insert id="writeBoard_img">
  	INSERT INTO CAFE_BOARD
- 	(BDTITLE, BDCOMMENT, BDCATEGORY,BDIMG,BDDATE)
+ 	(BDTITLE, BDCOMMENT, BDIMG,BDCATEGORY,BDDATE)
  	VALUES
  	(#{param1},#{param2},#{param3},#{param4},NOW())
  	</insert>
@@ -99,4 +99,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 		BDIDX = #{param1}
 	</delete>
+	
+	<!-- 게시글 보기 -->
+	<select id="viewBoard" resultType="com.hyun.cafe.dto.BoardDto">
+		SELECT * FROM CAFE_BOARD
+		WHERE
+		BDIDX = #{param1}
+	</select>
+	
+	<!-- 게시글 이전 글 보기 -->
+	<select id="view_forwardBoard" resultType="com.hyun.cafe.dto.BoardDto">
+		SELECT * FROM CAFE_BOARD
+		BDIDX IN
+		( SELECT MAX(BDIDX) 
+		FROM CAFE_BOARD
+		WHERE #{PARAM}>BDIDX)
+	</select>
+	
+		<!-- (SELECT BDIDX FROM CAFE_BOARD 
+		WHERE 
+		#{param1}> BDIDX 
+	 	ORDER BY BDIDX DESC 
+	 	LIMIT 1) -->
+	
+	<!-- 게시글 다음 글 보기 -->
+	<select id="view_nextBoard" resultType="com.hyun.cafe.dto.BoardDto">
+		SELECT * FROM CAFE_BOARD
+		WHERE
+		BDIDX IN(
+			SELECT MIN(BDIDX) 
+			FROM CAFE_BOARD
+			WHERE BDIDX > #{param1}
+		)
+	</select>
+	
+		<!-- (SELECT BDIDX FROM CAFE_BOARD 
+		WHERE 
+		BDIDX > #{param1} 
+		ORDER BY BDIDX ASC
+		LIMIT 1) -->
+	
 </mapper>
