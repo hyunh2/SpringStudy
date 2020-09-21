@@ -117,7 +117,14 @@
 				<ul>
 				<c:forEach var = "s" items="${sDto }">
 					<li class="mainlist">
-							<img src="${pageContext.request.contextPath }/resources/upload/${s.sImg }">
+							<c:choose>
+							<c:when test="${s.sImg eq null }">
+								<img src="resources/img/index.jpg" alt="이미지">
+							</c:when>
+							<c:otherwise>
+								<img src="${pageContext.request.contextPath }/resources/upload/${s.sImg }">
+							</c:otherwise>
+							</c:choose>
 							<p>${s.sName }</p>
 							<p>${s.sPrice }</p>
 						<div id="sandwtich_ex">

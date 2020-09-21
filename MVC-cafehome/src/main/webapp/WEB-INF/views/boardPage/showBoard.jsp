@@ -13,23 +13,21 @@
     }
     table{
         margin: auto;
-        width: 700px;
+        width: 850px;
         
+    }
+    .boardshow{
+    	margin-top:80px;
     }
     
     .board td:nth-of-type(1), .list td:nth-of-type(1){
-        width: 80px;
+        width: 100px;
         text-align: center;
     }
     
     
     .board, .list, tr,td{
         border-collapse: collapse;
-    }
-    
-   
-    .board tr:nth-of-type(4) td:nth-of-type(2){
-        text-align: center;
     }
     
     td{
@@ -78,9 +76,17 @@
            </tr>
            <tr>
                <td>내용</td>
-               <td><p>${bdDto.bdImg}
-               </p>
-               <pre>${bdDto.bdComment}</pre></td>
+               <td>
+               <c:choose>
+               <c:when test="${bdDto.bdImg eq null }">
+	               <br>
+               </c:when>
+               <c:otherwise>
+	               <p><img alt="이미지" src="${pageContext.request.contextPath }/resources/upload/${bdDto.bdImg}"  style="width:750px;"/></p>
+	               <br>
+               </c:otherwise>
+               </c:choose>
+               <pre style="font-weight: bolder; ">${bdDto.bdComment}</pre><br></td>
            </tr>
            <tr>
                <td colspan="2" class="btns">

@@ -31,15 +31,7 @@ public class ViewBoardCommand implements Command {
 			model.addAttribute("bdDto",bdDao.viewBoard(bdIdx) );
 			model.addAttribute("res", totalRecord);
 			
-		}/*else if(totalRecord ==2) { //다음글 만 존재
-			model.addAttribute("nextboard", bdDao.view_nextBoard(bdIdx));
-			model.addAttribute("bdDto",bdDao.viewBoard(bdIdx) );
-			
-		}else if(bdIdx == totalRecord) { // 이전 글만 존재
-			model.addAttribute("forwardboard", bdDao.view_forwardBoard(bdIdx));
-			model.addAttribute("bdDto",bdDao.viewBoard(bdIdx) );
-			
-		}*/else {// 이전, 다음 글 존재
+		}else {// 이전, 다음 글 존재
 			model.addAttribute("nextboard", bdDao.view_nextBoard(bdIdx));
 			model.addAttribute("forwardboard", bdDao.view_forwardBoard(bdIdx));
 			model.addAttribute("bdDto",bdDao.viewBoard(bdIdx) );
