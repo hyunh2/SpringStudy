@@ -110,7 +110,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 게시글 이전 글 보기 -->
 	<select id="view_forwardBoard" resultType="com.hyun.cafe.dto.BoardDto">
 		SELECT * FROM CAFE_BOARD
-		BDIDX IN
+		WHERE BDIDX IN
 		( SELECT MAX(BDIDX) 
 		FROM CAFE_BOARD
 		WHERE #{PARAM}>BDIDX)
