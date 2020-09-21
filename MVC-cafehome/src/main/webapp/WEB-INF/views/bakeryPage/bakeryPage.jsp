@@ -52,8 +52,8 @@
 }
 
 img {
-	width: 120px;
-	height: 180px;
+	width: 190px;
+	height: 250px;
 }
 
 ul {
@@ -84,9 +84,10 @@ ul {
 		
 		} */
 #bakery_ex {
-	width: 120px;
-	height: 180px;
-	background-color: rgb(80, 80, 80, 0.5);
+	width: 190px;
+	height: 250px;
+	position: absolute;
+	background-color: rgb(204, 204, 204, 0.6);
 	text-align: center;
 	opacity: 0;
 	z-index: 999;
@@ -97,10 +98,10 @@ ul {
 }
 
 .mainlist:hover #bakery_ex {
-	transform: translate(0px, -223px);
-	-webkit-transform: translate(0px, -223px);
-	-ms-transform: translate(0px, -223px);
-	-o-transform: translate(0px, -223px);
+	transform: translate(0px, -293px);
+	-webkit-transform: translate(0px, -293px);
+	-ms-transform: translate(0px, -293px);
+	-o-transform: translate(0px, -293px);
 	opacity: 1;
 }
 </style>
@@ -130,7 +131,8 @@ ul {
 							<p>${b.bName }</p>
 							<p>${b.bPrice }</p>
 						<div id="bakery_ex">
-							<pre>${b.bComment }</pre>
+							<br>
+							<pre style="white-space: pre-wrap; font-weight: bolder;">${b.bComment }</pre>
 						</div>
 					</li>
 				</c:forEach>

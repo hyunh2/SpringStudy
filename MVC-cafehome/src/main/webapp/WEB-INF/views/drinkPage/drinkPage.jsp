@@ -70,15 +70,17 @@ ul{
 } */
 
 	 img {
-	width: 120px;
-	height: 180px;
+	width: 190px;
+	height: 250px;
 	
 }
 
  #drink_ex {
-	width: 120px;
-	height: 180px;
-	background-color: rgb(80, 80, 80, 0.5);
+	width: 190px;
+	height: 250px;
+	position: absolute;
+	
+	background-color: rgb(204, 204, 204, 0.6);
 	text-align: center;
 	opacity:0;
 	z-index: 999;
@@ -89,13 +91,11 @@ ul{
 	
 }	
 
-
-
 	.mainlist:hover #drink_ex{
-	transform: translate(0px, -223px);
-	-webkit-transform: translate(0px, -223px);
-	-ms-transform: translate(0px, -223px);
-	-o-transform: translate(0px, -223px);
+	transform: translate(0px, -293px);
+	-webkit-transform: translate(0px, -293px);
+	-ms-transform: translate(0px, -293px);
+	-o-transform: translate(0px, -293px);
 	opacity: 1;
 }
 </style>
@@ -130,8 +130,10 @@ ul{
 						<p style="text-align:center;">${d.dPrice }원</p>
 					<!-- </div> -->
 					<div id="drink_ex">
+						<br>
 						<p>${d.dHotnIce }</p>
-						<pre>${d.dComment }</pre>
+						<br>
+						<pre style="white-space: pre-wrap; font-weight: bolder; ">${d.dComment }</pre>
 					</div>
 					</li>
 					</c:forEach>
@@ -158,8 +160,10 @@ ul{
 							<p style="text-align:center;">${d.dPrice }원</p>
 						<!-- </div> -->
 						<div id="drink_ex">
+							<br>
 							<p>${d.dHotnIce}</p>
-							<pre>${d.dComment }</pre>
+							<br>
+							<pre style="white-space: pre-wrap; font-weight: bolder; ">${d.dComment }</pre>
 						</div>
 						</li>
 					</c:forEach>
