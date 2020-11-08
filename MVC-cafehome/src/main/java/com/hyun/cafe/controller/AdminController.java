@@ -29,6 +29,7 @@ import com.hyun.cafe.command.boardCommand.BoardListMainCommnad;
 
 @Controller
 public class AdminController {
+	
 	@Autowired
 	private SqlSession sqlSession; //DI로 생성 (autowired로 통해서 알아서 생성되게)
 	private Command acommd; // new로 생성 (Spring 버전을 타지 않는다) 

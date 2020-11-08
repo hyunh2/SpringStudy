@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyun.study.dao.BoardDaoImpl">
+
+<resultMap type="com.hyun.study.dto.MemberDto" id="member">
+	<result column="idk" property="idk"/>
+	<result column="name" property="name"/>
+	<result column="id" property="id"/>
+	<result column="pw" property="pw"/>
+	<result column="email" property="email"/>
+	<result column="regdate" property="regdate"/>
+	<collection property="board" resultMap="board"/>
+</resultMap>
+
+<resultMap type="com.hyun.study.dto.BoardDto" id="board">
+	<result column="id" property="id"/>
+	<result column="idk" property="idk"/>
+	<result column="title" property="title"/>
+	<result column="comment" property="comment"/>
+	<result column="regdate" property="regdate"/>
+</resultMap>
+
+
+
+	<select id="listAll" resultType="com.hyun.study.dto.BoardDto">	
+		SELECT * FROM BOARD
+		
+	</select>
+	
+	<select id="show" resultType="com.hyun.study.dto.BoardDto">
+		SELECT * FROM BOARD
+		WHERE IDK = #{idk}
+	</select>
+	
+	<delete id="remove">
+		DELETE FROM BOARD
+		WHERE IDK = #{idk}
+	</delete>
+	
+	<insert id="addBoard">
+		INSERT INTO BOARD(TITLE,ID,COMMENT,REGDATE)
+		VALUES
+		(
+		#{title},
+		#{id},
+		#{comment},
+		NOW())
+	</insert>
+	
+	<select id="listjoin" resultMap="member">
+		SELECT * 
+		FROM MEMBER M INNER JOIN BOARD B
+		ON M.ID = B.ID;
+	</select>
+</mapper>
